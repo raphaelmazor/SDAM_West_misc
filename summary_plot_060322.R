@@ -180,3 +180,12 @@ basemap +
   coord_sf(xlim=west_regions_sf_bb[c(1,3)],
            ylim=west_regions_sf_bb[c(2,4)])
 
+west_df %>%
+  select(SiteCode, Region, Determination_Final, PhaseType) %>%
+  unique() %>%
+  group_by(Region, Determination_Final, PhaseType) %>%
+  tally() %>%
+  pivot_wider(names_from=Determination_Final, values_from = n) %>%
+  write.table(file="clipboard", sep="\t", row.names=F)
+  
+
