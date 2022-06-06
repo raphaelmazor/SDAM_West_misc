@@ -171,3 +171,12 @@ basemap +
            ylim=west_regions_sf_bb[c(2,4)])
   
 
+basemap +
+  geom_sf(data=west_sf %>%
+            mutate(PhaseType2 = case_when(PhaseType=="Both"~"Both",T~"Beta/Expansion only")), 
+          aes(shape=PhaseType2), fill="black")+
+  scale_shape_manual(values=c(24,21), name="")+
+  facet_grid(Phase~Determination_Final)+
+  coord_sf(xlim=west_regions_sf_bb[c(1,3)],
+           ylim=west_regions_sf_bb[c(2,4)])
+
